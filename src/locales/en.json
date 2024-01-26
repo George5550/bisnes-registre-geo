@@ -1,0 +1,204 @@
+{
+   
+    "mainForm": {
+        "title1": "Search for economic subjects",
+        "title2": "Legal address",
+        "title3": " actual address",
+        "title4": "Economic Activity (NACE Rev.2)",
+        "title5": "Ownership type",
+        "title6": "Business Size",
+        "placeholder":{
+            "input1": "ID number",
+            "input2": "Name of the organization",
+            "input3": "head",
+            "input4": "partner",
+            "input5": "Address",
+            "select1": "Legal status",
+            "select2": "region",
+            "select3": "Municipality/City",
+            "select4": "Name of economic activity",
+            "select5": " ownership type",
+            "select6": "business size"
+        },
+        "check":{
+            "p": "Active economic entities"
+        },
+        "button":{
+            "button1": "search",
+            "button2": "Stop searching",
+            "button3": "Cancel"
+        }
+    },
+    "header":{
+        "h1": "National Statistics Office of Georgia",
+        "h2": "Statistical Business Register",
+        "div": "By November Of 2023"
+    },
+    "TabWrapper":{
+        "tab1": "Home",
+        "tab2": "Reports",
+        "tab3": "Charts",
+        "tab4": "GIS Analysis"
+        
+     },
+ 
+    "footer":{
+        "h1_1": "© 2023 All rights reserved.",
+        "h1_2": "National Statistics Office of Georgia (GeoStat)",
+        "h1_3": "E-mail: ",
+        "h1_4": "Tel:",
+        "a": "Terms of Use"
+     },
+
+     "report":{
+        "div_1": "1 - Number of registered and active organizations by economic activity (Nace Rev. 2)",
+        "div_2": "2 - Number of registered and active organizations by organizational-legal forms",
+        "div_3": "3 - Number of registered organizations by forms of ownership",
+        "div_4": "4 - Number of registered and active organizations by regions",
+        "div_5": "5 - Number of registered and active organizations by municipalities",
+        "div_6": "6 - Number of registered organizations by organizational-legal forms and years - incremental sum",
+        "div_7": "7 - Number of registered organizations by organizational-legal forms and years - registered in a specific year",
+        "div_8": "8 - Number of registered organizations by type of economic activity (Nace Rev. 2.) and years - incremental sum",
+        "div_9": "9 - Number of registered organizations by type of economic activity (Nace Rev. 2.) and years - registered in a specific year",
+        "div_10": "10 - The number of active business entities registered in Georgia according to regions and types of economic activity (Nace Rev.2)"
+        
+     },
+
+     "modal":{
+        "title_h3": " About Business Register",
+        "p_1": " The Statistical Business Register was established in 1995. It includes regulated information on all legal persons and individuals engaged in public or entrepreneurial activities in the country. ",
+        "p_2": "  The Statistical Business Register is updated monthly, mainly on the basis of information obtained from administrative sources (National Agency of Public Registry, Revenue Service) and various business surveys conducted by the National Statistics Office of Georgia (Geostat). ",
+        "p_3": " On the first section of this page – Home filtered allow to find information about registered entities in Georgia according to various characteristics (by legal status, ownership type, region, municipality, kind of economic activity, etc.) ",
+        "p_4": " The tables presented in the Reports section shows the distribution of registered and active enterprises in Georgia and organizations by different characteristics. ",
+        "p_5": "  The charts section shows the Demographic Indicators of Enterprises – (Enterprise birth, Enterprise death, Survival). ",
+
+        "p_6": " GIS Analysis section, where the geographical coordinates of the active companies are indicated, allows to find the business entities, by their actual address on the interactive maps. "
+
+     },
+
+     "searchTable":{
+        "head1": "Tax ID",
+        "head2": "ID number",
+        "head3": "Legal status",
+        "head4": "Name",
+        "head5": "Region",
+        "head6": "Legal address",
+        "head7": "Region",
+        "head8": "Actual address",
+        "head9": "NACE 2",
+        "head10": "Name of Economic Activity NACE 2",
+        "head11": "Head",
+        "head12": "Tel..",
+        "head13": "Partner",
+        "head14": "E-mail",
+        "head15": "Ownership type",
+        "head16": "Active",
+        "head17": "Zoma",
+        "button1": "Home",
+        "button2": "Reports",
+        "h4": "List of economic entities"
+     },
+     "reportTable":{
+       
+        "td1": "AGRICULTURE, FORESTRY AND FISHING",
+       
+        "h5_3": "* An entity is active if it meets one of the following criteria:",
+        "li1": "1. Turnover > 0 (VAT, monthly income and other declarations);",
+        "li2": "2. Salary or number of employees > 0 (monthly income or other declarations);",
+        "li3": "3. Has a profit or loss (profit declaration);",
+        "li4": "4. Paid any kind of tax, except property tax.",
+
+        "reporTitle_1":{
+            "head1_index_1": "Code",
+            "head2_index_1": "Name of section",
+            "head3_index_1": "Registered",
+            "head5_index_1": "Active *",
+            "h5_1_index_1": "1 - Number of registered and active organizations by economic activity (Nace Rev. 2)",
+            "h5_2_index_1": "1 November 2023"
+        },
+
+        "reporTitle_2":{
+            "head1_index_2": "Code",
+            "head2_index_2": "Legal status",
+            "head3_index_2": "Registered",
+            "head5_index_2": "Active *",
+            "h5_1_index_2": "2 - Number of registered and active organizations by organizational-legal forms",
+            "h5_2_index_2": "1 December 2023"
+        },
+
+        "reporTitle_3":{
+            "head1_index_3": "Code",
+            "head2_index_3": "Ownership type",
+            "head3_index_3": "Registered",
+            "head5_index_3": "Active *",
+            "h5_1_index_3": "3 - Number of registered organizations by forms of ownership",
+            "h5_2_index_3": "1 December 2023"
+        },
+
+        "reporTitle_4":{
+            "head1_index_3": "Code",
+            "head2_index_3": "Region",
+            "head3_index_3": "Registered",
+            "head5_index_3": "Active *",
+            "h5_1_index_3": "4 - Number of registered and active organizations by regions",
+            "h5_2_index_3": "1 December 2023"
+        },
+        "reporTitle_5":{
+            "head1_index_3": "Code",
+            "head2_index_3": "Municipality",
+            "head3_index_3": "Registered",
+            "head5_index_3": "Active *",
+            "h5_1_index_3": "5 - Number of registered and active organizations by municipalities",
+            "h5_2_index_3": "1 December 2023"
+        },
+        "reporTitle_6":{
+            "head1_index_6": "Code",
+            "head2_index_6": "Name of Legal status",
+            "head3_index_6": "Number of organizations",
+            "h5_1_index_6": "6 - Number of registered organizations by organizational-legal forms and years - incremental sum" 
+        },
+        "reporTitle_7":{
+            "head1_index_7": "Code",
+            "head2_index_7": "Name of Legal status",
+            "head3_index_7": "umber of organizations",
+            "h5_1_index_7": "7 - Number of registered organizations by organizational-legal forms and years - registered in a specific year"
+           
+        },
+        "reporTitle_8":{
+            "head1_index_8": "Code",
+            "head2_index_8": "Name of section",
+            "head3_index_8": "Number of organizations",
+            "h5_1_index_8": "8 - Number of registered organizations by type of economic activity (Nace Rev. 2.) and years - incremental sum"
+        },
+        "reporTitle_9":{
+            "head1_index_9": "Code",
+            "head2_index_9": "Name of section",
+            "head3_index_9": "Number of organizations",
+            "h5_1_index_9": "9 - Number of registered organizations by type of economic activity (Nace Rev. 2.) and years - registered in a specific year"
+           
+        }
+        
+     },
+
+     "Charts":{
+        "head":{
+            "leftRight_1":"Birth and death of enterprises 2012-2021 ",
+          
+        "leftRight_2_1":"Enterprise births by  kind  of economic activity - 2012-2022 years",
+        "leftRight_2_2":"Death of enterprises according to types of economic activity 2014-2022",
+
+        "leftRight_3_1":"Enterprises births by regions",
+        "leftRight_3_2":"Enterprises deaths by regions",
+
+        "leftRight_4_1":"Enterprises births by industry",
+        "leftRight_4_2":"Enterprises deaths by industry",
+
+        "leftRight_5_1":"Distribution of enterprises born in 2022 by region",
+        "leftRight_5_2":"Distribution of enterprises that died in 2022 by regions",
+
+        "leftRight_6_1":"Survival of enterprises by years"
+       
+  
+        }
+      }
+  }
