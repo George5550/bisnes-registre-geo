@@ -1,3 +1,5 @@
+// prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -6,43 +8,111 @@ datasource db {
   provider = "sqlserver"
   url      = env("DATABASE_URL")
 }
-
-model dbo.DocMain {
-  Stat_ID        Int     @id
-  Legal_Code Int
-  Personal_no     String   @db.VarChar(50)
-  Legal_Form_ID Int
-  Full_Name String
-  Ownership_Type_ID Int
-  ISActive Int
-  Zoma_ID Int
-  Reg_Date  DateTime
-  Init_Reg_date  DateTime
-  Change Int
-  Legal_Forms Legal_Forms  @relation(fields: [Legal_Form_ID], references: [ID], map: "DocMain_LegalForms", onDelete: NoAction, onUpdate: NoAction)
-  Ownership_Types Ownership_Types @relation(fields: [Ownership_Type_ID], references: [ID], map: "DocMain_OwnershipTypes", onDelete: NoAction, onUpdate: NoAction)
-  Zoma Size @relation(fields: [Zoma_ID], references: [ID], map: "DocMain_Zoma", onDelete: NoAction, onUpdate: NoAction)
+model Activities_NACE2 {
+  ID      Int      @id
+  Parent_ID Int?
+  Activity_Type_ID Int
+  Activity_Code String
+  Activity_Name_ka String?
+  Activity_Name_en String?
+  Economy_Activity Economy_Activity[] 
 }
 
-model CL.Legal_Forms {
-  ID      Int     @id 
-  Abbreviation_ka    String
-  Abbreviation_en    String
-  Legal_Form_ka    String
-  Legal_Form_en    String
-  DocMain    DocMain[]
+model Address {
+  ID      Int      @id
+  Stat_ID Int      @unique
+  Type Int?
+  Location_ID Int
+  Address String?
+  X   Float
+  Y   Float
+  DocMain DocMain[]
+  Locations Locations @relation(fields: [Location_ID], references: [ID], map: "Address_Locations", onDelete: NoAction, onUpdate: NoAction)
+}
+
+model DocActivities {
+  Stat_ID        Int     @id
+  Legal_Code Int
+  Personal_no String?
+  Full_Name String
+}
+
+model DocMain {
+  Stat_ID        Int     @id
+  Legal_Code     Int
+  Personal_no    String?
+  Legal_Form_ID  Int
+  Full_Name      String?
+  Ownership_Type_ID Int
+  ISActive       Int?
+  Zoma_ID        Int
+  Reg_Date       DateTime?
+  Init_Reg_date  DateTime?
+  Change         Int?
+  Legal_Forms    Legal_Forms  @relation(fields: [Legal_Form_ID], references: [ID], map: "DocMain_LegalForms", onDelete: NoAction, onUpdate: NoAction)
+  Ownership_Types Ownership_Types @relation(fields: [Ownership_Type_ID], references: [ID], map: "DocMain_OwnershipTypes", onDelete: NoAction, onUpdate: NoAction)
+  Zoma           Size @relation(fields: [Zoma_ID], references: [ID], map: "DocMain_Zoma", onDelete: NoAction, onUpdate: NoAction)
+  Address Address @relation(fields: [Stat_ID], references: [Stat_ID], map: "Address_DocMain", onDelete: NoAction, onUpdate: NoAction)
+  Economy_Activity Economy_Activity @relation(fields: [Stat_ID], references: [Stat_ID], map: "Economy_Activity_DocMain", onDelete: NoAction, onUpdate: NoAction)
+  HeadInfo HeadInfo @relation(fields: [Stat_ID], references: [Stat_ID], map: "HeadInfo_DocMain", onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Economy_Activity {
+  ID        Int     @id
+  Stat_ID        Int @unique
+  Activities_ID Int
+  DocMain DocMain[]
+  Activities_NACE2 Activities_NACE2  @relation(fields: [Activities_ID], references: [ID], map: "Economy_Activity_Activities_NACE2", onDelete: NoAction, onUpdate: NoAction)
+}
+
+model HeadInfo {
+  ID        Int     @id
+  Stat_ID        Int @unique
+  Head String?
+  mob String?
+  Email String?
+  Head_PN String?
+  Partner String?
+  Partner_PN String?
+  DocMain DocMain[] 
+}
+
+model Locations {
+  ID      Int      @id
+  Parent_ID Int?
+  Location_Code String?
+  Location_Name_ka String
+  Location_Name_en String
+  Level Int
+  Address        Address[]
+}
+
+
+
+model Legal_Forms {
+  ID               Int     @id
+  Abbreviation_ka String
+  Abbreviation_en String
+  Legal_Form_ka   String
+  Legal_Form_en   String
+  DocMain         DocMain[]
+
+  
 }
 
 model Ownership_Types {
-  ID      Int      @id
-  Ownership_Type_ka    String
-  Ownership_Type_en    String
-  DocMain    DocMain[]
+  ID               Int      @id
+  Ownership_Type_ka String
+  Ownership_Type_en String
+  DocMain          DocMain[]
 }
 
 model Size {
   ID      Int      @id
-  zoma_ka    String @db.VarChar(20)
-  zoma_en    String @db.VarChar(20)
-  DocMain    DocMain[]
+  zoma_ka String
+  zoma_en String
+  DocMain DocMain[]
+
 }
+
+

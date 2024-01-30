@@ -246,9 +246,11 @@
 <script>
 import Multiselect from '@vueform/multiselect'
 import { ref, onMounted, getCurrentInstance, computed } from 'vue';
-import axios from 'axios';
+import { storeToRefs } from 'pinia';
+// import { allCla } from '@/api/cla';
 import _ from 'lodash';
 import { useRouter } from 'vue-router';
+import { useClaStore } from '@/stores/claStore';
 export default {
   components: {
       Multiselect,
@@ -259,9 +261,12 @@ export default {
         return  proxy.$i18n.locale
       })
       const m = ref({});
-      let legal_forms = ref(null);
-      let regions = ref(null);
-      let municipals = ref(null);
+      const store = useClaStore(); 
+      const { cla, legalForms, activities, region, municipal } = storeToRefs(store)
+      const { fetchCla, } = store;
+      let legal_forms = ref([]);
+      let regions = ref([]);
+      let municipals = ref([]);
       let ownershipTypes = ref(null);
       let size = ref(null);
       let activitiesNACE2 = ref(null);
@@ -269,60 +274,18 @@ export default {
       const cancelTokenSource = ref(null);
 
       const router = useRouter();
-      console.log('data', router.getRoutes());
-      // const route = useRoute();
-      const  fetchPosts = async() => {
-        try {
-          const response = await axios.get('http://localhost:3000/cla');
-          // console.log('response', response);
-          legal_forms.value = response.data.legal_forms;
-        for (let a = 0; a < legal_forms.value.length; a++) {
-            legal_forms.value[a].legal_name_ka = (legal_forms.value[a].id < 5 || legal_forms.value[a].id == 30 ||legal_forms.value[a].id == 98 || legal_forms.value[a].id == 99)?`${legal_forms.value[a].Abbreviation_ka} - ${legal_forms.value[a].Legal_Form_ka}`: `${legal_forms.value[a].Legal_Form_ka}`;
-            legal_forms.value[a].legal_name_en = (legal_forms.value[a].id < 5 || legal_forms.value[a].id == 30 ||legal_forms.value[a].id == 98 || legal_forms.value[a].id == 99)?`${legal_forms.value[a].Abbreviation_en} - ${legal_forms.value[a].Legal_Form_en}`:`${legal_forms.value[a].Legal_Form_en}`;
-            // Access the element to update in each object  
-        }
-     
-          ownershipTypes.value = response.data.ownership_types
-          size.value = response.data.size
-
-          activitiesNACE2.value = response.data.activitiesNACE2
-          for (let i = 0; i < activitiesNACE2.value.length; i++) {
-            activitiesNACE2.value[i].name_ka =  `${activitiesNACE2.value[i].Activity_Code} - ${activitiesNACE2.value[i].Activity_Name_ka}`
-            activitiesNACE2.value[i].name_en =  `${activitiesNACE2.value[i].Activity_Code} - ${activitiesNACE2.value[i].Activity_Name_en}`
-                // Access the element to update in each object  
-          }
-
-          
-          
-          regions.value = _.filter(response.data.locations, function(o){ return o.level == 2 })
-          regions.value = _.sortBy(regions.value, [function(o) { return o.Location_Code; }]);
-          for (let r = 0; r < regions.value.length; r++) {
-            regions.value[r].regions_name_ka = `${regions.value[r].Location_Code} - ${regions.value[r].Location_Name_ka}`;
-            regions.value[r].regions_name_en = `${regions.value[r].Location_Code} - ${regions.value[r].Location_Name_en}`;
-            // Access the element to update in each object  
-        }
-
-
-
-
-
-
-          municipals.value = _.filter(response.data.locations, function(o){ return o.level == 3 });
-          municipals.value = _.sortBy(municipals.value, [function(o) { return o.Location_Code; }]);
-          for (let m = 0; m < municipals.value.length; m++) {
-            municipals.value[m].municipals_name_ka = `${municipals.value[m].Location_Code} - ${municipals.value[m].Location_Name_ka}`;
-            municipals.value[m].municipals_name_en = `${municipals.value[m].Location_Code} - ${municipals.value[m].Location_Name_en}`;
-            // Access the element to update in each object  
-        }
-
-          
-        } catch (error) {
-          console.error(error);
-        }
-      }   
       
-    onMounted(() => {
-      fetchPosts();
+      // const route = useRoute();
+
+      
+    onMounted( async () => {
+      await fetchCla()
+      legal_forms.value = legalForms.value
+      activitiesNACE2.value = activities.value
+      regions.value = region.value
+      municipals.value = municipal.value
+      ownershipTypes.value = cla.value.ownership_types
+      size.value = cla.value.size
     });
 
    
@@ -471,7 +434,7 @@ export default {
           isSearching.value = true
           
           const response = await axios.get(apiUrl, { params: { searchParam: item }, cancelToken: cancelTokenSource.value.token  });
-          let data = response.data;
+          let data = data;
 
           if (data) {
             console.log('Response Data:', data);
@@ -497,7 +460,7 @@ export default {
       //       name: 'search',
       //       params:{id: 1},
       //     });
-      //     console.log('response.data',response.data);
+      //     console.log('data',data);
       //   })
       //   .catch(error => {
       //     // Handle errors
@@ -527,6 +490,7 @@ export default {
       return {
         m,
         value: null,
+        legalForms,
         legal_forms,
         regions,
         municipals,

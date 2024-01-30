@@ -1,0 +1,51 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+    output   = "./generated/client"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model DocMain {
+  Stat_ID        Int     @id
+  Legal_Code     Int
+  Personal_no    String
+  Legal_Form_ID  Int
+  Full_Name      String
+  Ownership_Type_ID Int
+  ISActive       Int?
+  Zoma_ID        Int
+  Reg_Date       DateTime
+  Init_Reg_date  DateTime
+  Change         Int?
+  Legal_Forms    Legal_Forms  @relation(fields: [Legal_Form_ID], references: [ID], map: "DocMain_LegalForms", onDelete: NoAction, onUpdate: NoAction)
+  Ownership_Types Ownership_Types @relation(fields: [Ownership_Type_ID], references: [ID], map: "DocMain_OwnershipTypes", onDelete: NoAction, onUpdate: NoAction)
+  Zoma           Size @relation(fields: [Zoma_ID], references: [ID], map: "DocMain_Zoma", onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Legal_Forms {
+  ID               Int     @id
+  Abbreviation_ka String
+  Abbreviation_en String
+  Legal_Form_ka   String
+  Legal_Form_en   String
+  DocMain         DocMain[]
+}
+
+model Ownership_Types {
+  ID               Int      @id
+  Ownership_Type_ka String
+  Ownership_Type_en String
+  DocMain          DocMain[]
+}
+
+model Size {
+  ID      Int      @id
+  zoma_ka String
+  zoma_en String
+  DocMain DocMain[]
+}
